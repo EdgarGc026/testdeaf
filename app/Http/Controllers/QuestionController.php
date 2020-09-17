@@ -20,16 +20,16 @@ class QuestionController extends Controller{
   }
 
   public function create($id){
-    $questionnaires = Questionnaire::findOrFail($id);
+    $questionnaires = Questionnaire::find($id);
      return view('question.create', compact('questionnaires'));
   }
 
   public function store(QuestionStoreRequest $request){
     $questions = new Question;
-    $questions->questionnaire_id = $request->input('questionnaire_id');
-    $questions->description = $request->input('question.description');
-    $questions->iframe = $request->input('question.iframe');
-    $questions->image = $request->input('question.image');
+    $questions->questionnaire_id = $request->get('questionnaire_id');
+    $questions->description = $request->get('question.description');
+    $questions->iframe = $request->get('question.iframe');
+    $questions->image = $request->get('question.image');
     $questions->save();
 
     //Guardando los datos para las respuestas...
@@ -39,13 +39,12 @@ class QuestionController extends Controller{
   }
 
   public function edit($id){
-    $questionnaires = Question::findOrFail($id);
+    $questionnaires = Questionnaire::findOrFail($id);
     return view('question.edit', compact('questionnaires'));
   }
 
-  public function update(QuestionUpdateRequest $request){
-    $questions = Question::with('questionnaire_id')->get();
-
+  public function update(QuestionUpdateRequest $request, $questions){
+    $questions = Question::find($questions->id);
   }
 
     /*

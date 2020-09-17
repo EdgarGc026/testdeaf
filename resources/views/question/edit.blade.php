@@ -3,7 +3,6 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-12">
-
       <div class="card">
         <div class="card-header">
           <a href="{{ route('questions.index', $questionnaires->id) }}"
@@ -24,8 +23,9 @@
             </div>
           @endif
 
-          <form action="{{ route('questions.store', $questionnaires->id) }}" method="POST" enctype="multipart/form-data">
+          <form action="{{ route('questions.update', [$questionnaires, $questionnaires->questions->id]) }}" method="POST" enctype="multipart/form-data">
             @CSRF
+            <h2 class="text-center">Editando la pregunta: <span>{{$questionnaires->id}}</span></h2>
             <legend>Pregunta</legend>
             <input hidden name="questionnaire_id" value="{{ $questionnaires->id }}">
             <div class="form-group">
@@ -43,7 +43,7 @@
               <textarea name="question[iframe]" type="text"
                         class="form-control" id="iframe"
                         aria-describedby="iframeHelp"
-                        placeholder="Inserte la URL del video">{{ old('question.iframe') }}</textarea>
+                        placeholder="Inserte la URL del video">{{ old('question.iframe')}}</textarea>
               <small id="iframeHelp" class="form-text text-muted">
                 Inserta la url del video.
               </small>
