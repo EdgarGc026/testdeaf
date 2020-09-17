@@ -45,6 +45,11 @@ class QuestionController extends Controller{
 
   public function update(QuestionUpdateRequest $request, $questions){
     $questions = Question::find($questions->id);
+
+    $questions->questionnaire_id = $request->get('questionnaire_id');
+    $questions->description = $request->get('question.description');
+    $questions->iframe = $request->get('question.iframe');
+    $questions->image = $request->get('question.image');
   }
 
     /*

@@ -35,10 +35,6 @@ Route::get('/questionnaires/{questionnaire}/questions/{question}', 'QuestionCont
   ->name('questions.confirmDelete');
 Route::delete('/questionnaires/{questionnaire}/questions/{question}','QuestionController@destroy')
   ->name('questions.destroy');
-/*
-
-*/
-
 
 
 
