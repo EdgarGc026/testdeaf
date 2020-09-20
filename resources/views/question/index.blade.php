@@ -27,7 +27,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($questionnaires->questions as $questions )
+            @foreach($questionnaires->questions as $questions)
               <tr>
                 <td>{{$questions->id}}</td>
                 <td>{{$questions->description}}</td>
@@ -35,7 +35,7 @@
                   <a href="{{ route('questions.edit', [$questionnaires, $questions->id]) }}"
                      class="btn btn-warning btn-sm" title="Editar preguntas"><i class="far fa-edit"></i>
                   </a>
-                  <a href="#" class="btn btn-danger btn-sm"
+                  <a href="{{ route('questions.confirmDelete', [$questionnaires, $questions->id]) }}" class="btn btn-danger btn-sm"
                      title="Eliminar preguntas"><i class="fas fa-trash-alt"></i>
                   </a>
                 </td>

@@ -23,17 +23,18 @@
             </div>
           @endif
 
-          <form action="{{ route('questions.update', [$questionnaires, $questionnaires->questions->id]) }}" method="POST" enctype="multipart/form-data">
+          <form action="{{ route('questions.update', [$questionnaires->id, $question->id]) }}" method="POST" enctype="multipart/form-data">
             @CSRF
-            <h2 class="text-center">Editando la pregunta: <span>{{$questionnaires->id}}</span></h2>
+            
+            <h2 class="text-center">Editando la pregunta: <span>{{ $question->id }}</span></h2>
             <legend>Pregunta</legend>
-            <input hidden name="questionnaire_id" value="{{ $questionnaires->id }}">
+            {{-- <input hidden name="questionnaire_id" value="{{ $questionnaires->id }}"> --}}
             <div class="form-group">
               <label for="description">Descripcion de la pregunta*</label>
               <textarea name="question[description]" type="text"
                         class="form-control" id="description"
                         aria-describedby="descriptionHelp"
-                        placeholder="Inserte la pregunta">{{ old('question.description') }}</textarea>
+                        placeholder="Inserte la pregunta">{{ old('question.description', $question->description) }}</textarea>
               <small id="descriptionHelp" class="form-text text-muted">
                 Escribe la descripcion de la pregunta.
               </small>
@@ -43,7 +44,7 @@
               <textarea name="question[iframe]" type="text"
                         class="form-control" id="iframe"
                         aria-describedby="iframeHelp"
-                        placeholder="Inserte la URL del video">{{ old('question.iframe')}}</textarea>
+                        placeholder="Inserte la URL del video">{{ old('question.iframe', $question->iframe)}}</textarea>
               <small id="iframeHelp" class="form-text text-muted">
                 Inserta la url del video.
               </small>
@@ -61,11 +62,12 @@
         <div class="card-body">
           <legend>Respuesta #1</legend>
           <div class="form-group">
+            <input hidden name="answers[0][id]" value="{{ $question->answers[0]->id }}" />
             <label for="descriptionHelp">Descripcion</label>
             <textarea name="answers[0][description]" type="text"
                       class="form-control" id="description"
                       aria-describedby="descriptionHelp"
-                      placeholder="Inserte la respuesta">{{ old('answers.0.description') }}</textarea>
+                      placeholder="Inserte la respuesta">{{ old('answers.0.description', $question->answers[0]->description) }}</textarea>
             <small id="descriptionHelp" class="form-text text-muted">
               Escribe la descripcion de la respuesta.
             </small>
@@ -76,7 +78,7 @@
             <textarea name="answers[0][iframe]" type="text"
                       class="form-control" id="iframe"
                       aria-describedby="iframeHelp"
-                      placeholder="Inserte el video">{{ old('answers.0.iframe') }}</textarea>
+                      placeholder="Inserte el video">{{ old('answers.0.iframe', $question->answers[0]->iframe) }}</textarea>
             <small id="descriptionHelp" class="form-text text-muted">
               Escribe la descripcion de la pregunta.
             </small>
@@ -102,11 +104,12 @@
         <div class="card-body">
           <legend>Respuesta #2</legend>
           <div class="form-group">
+            <input hidden name="answers[1][id]" value="{{ $question->answers[1]->id }}" />
             <label for="descriptionHelp">Descripcion</label>
             <textarea name="answers[1][description]" type="text"
                       class="form-control" id="description"
                       aria-describedby="descriptionHelp"
-                      placeholder="Inserte la respuesta">{{ old('answers.1.description') }}</textarea>
+                      placeholder="Inserte la respuesta">{{ old('answers.1.description', $question->answers[1]->description) }}</textarea>
             <small id="descriptionHelp" class="form-text text-muted">
               Escribe la descripcion de la respuesta.
             </small>
@@ -117,7 +120,7 @@
             <textarea name="answers[1][iframe]" type="text"
                       class="form-control" id="iframe"
                       aria-describedby="iframeHelp"
-                      placeholder="Inserte el video">{{ old('answers.1.iframe') }}</textarea>
+                      placeholder="Inserte el video">{{ old('answers.1.iframe', $question->answers[1]->iframe) }}</textarea>
             <small id="descriptionHelp" class="form-text text-muted">
               Escribe la descripcion de la pregunta.
             </small>
@@ -143,11 +146,12 @@
         <div class="card-body">
           <legend>Respuesta #3</legend>
           <div class="form-group">
+            <input hidden name="answers[2][id]" value="{{ $question->answers[2]->id }}" />
             <label for="descriptionHelp">Descripcion</label>
             <textarea name="answers[2][description]" type="text"
                       class="form-control" id="description"
                       aria-describedby="descriptionHelp"
-                      placeholder="Inserte la respuesta">{{ old('answers.2.description') }}</textarea>
+                      placeholder="Inserte la respuesta">{{ old('answers.2.description', $question->answers[2]->description) }}</textarea>
             <small id="descriptionHelp" class="form-text text-muted">
               Escribe la descripcion de la respuesta.
             </small>
@@ -158,7 +162,7 @@
             <textarea name="answers[2][iframe]" type="text"
                       class="form-control" id="iframe"
                       aria-describedby="iframeHelp"
-                      placeholder="Inserte el video">{{ old('answers.2.iframe') }}</textarea>
+                      placeholder="Inserte el video">{{ old('answers.2.iframe', $question->answers[2]->iframe) }}</textarea>
             <small id="descriptionHelp" class="form-text text-muted">
               Escribe la descripcion de la pregunta.
             </small>
@@ -189,18 +193,19 @@
                       class="form-control" id="description"
                       aria-describedby="descriptionHelp"
                       placeholder="Inserte la respuesta"
-            >{{ old('answers.3.description') }}</textarea>
+            >{{ old('answers.3.description', $question->answers[3]->description) }}</textarea>
             <small id="descriptionHelp" class="form-text text-muted">
               Escribe la descripcion de la respuesta.
             </small>
           </div>
 
           <div class="form-group">
+            <input hidden name="answers[3][id]" value="{{ $question->answers[3]->id }}" />
             <label for="iframeHelp">Link del Video</label>
             <textarea name="answers[3][iframe]" type="text"
                       class="form-control" id="iframe"
                       aria-describedby="iframeHelp"
-                      placeholder="Inserte el video">{{ old('answers.3.iframe') }}</textarea>
+                      placeholder="Inserte el video">{{ old('answers.3.iframe', $question->answers[3]->iframe) }}</textarea>
             <small id="descriptionHelp" class="form-text text-muted">
               Escribe la descripcion de la pregunta.
             </small>
@@ -219,6 +224,7 @@
               <option value="0">Incorrecta</option>
             </select>
           </div>
+          @method('PUT')
           <button type="submit" class="btn btn-primary">Guardar pregunta</button>
           </form>
         </div>

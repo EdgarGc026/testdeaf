@@ -4,13 +4,10 @@ use Illuminate\Support\Facades\Route;
 
 /* Creando la ruta del admin */
 
-/* Route::resource('questions', 'QuestionController');
-Route::get('/questions/{id}/confirmDelete', 'QuestionController@confirmDelete')
-    ->name('questions.confirmDelete'); */
-
 Route::get('/', function () {
     return view('welcome');
 });
+
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -31,31 +28,9 @@ Route::get('/questionnaires/{questionnaire}/questions/{question}/edit', 'Questio
 Route::put('/questionnaires/{questionnaire}/questions/{question}', 'QuestionController@update')
   ->name('questions.update');
 
-Route::get('/questionnaires/{questionnaire}/questions/{question}', 'QuestionController@confirmDelete')
+Route::get('/questionnaires/{questionnaire}/questions/{question}/confirmDelete', 'QuestionController@confirmDelete')
   ->name('questions.confirmDelete');
 Route::delete('/questionnaires/{questionnaire}/questions/{question}','QuestionController@destroy')
   ->name('questions.destroy');
 
-
-
-/* Route::post('questions/{questions}/answers','QuestionsAnswersController@create')->name('create_answer'); */
-
 Route::get('/takeExam', 'SurveyController@show')->name('survey.show');
-
-/* Route::get('/questionnaires/create', 'QuestionnaireController@create')
-    ->name('questionnaires.create');
-Route::post('/questionnaires', 'QuestionnaireController@store')
-    ->name('questionnaires.store');
-
-Route::put('/questionnaires/{questionnaire}', 'QuestionnaireController@update')
-    ->name('questionnaires.update');
-Route::get('/questionnaires/{questionnaire}/edit', 'QuestionnaireController@edit')
-    ->name('questionnaires.edit');
-
-Route::get('/questionnaires', 'QuestionnaireController@index')
-    ->name('questionnaires.index');
-Route::get('/questionnaires/{questionnaire}', 'QuestionnaireController@show')
-    ->name('questionnaires.show');
-
-Route::delete('/questionnaires/{questionnaire}', 'QuestionnaireController@destroy')
-    ->name('questionnaires.destroy'); */

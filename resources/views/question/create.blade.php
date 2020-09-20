@@ -132,7 +132,7 @@
             <label>Opciones</label>
             <select name="answers[1][is_correct]" id="is_correct" class="form-control">
               <option value="" disabled>Selecciona la opcion</option>
-              <option value="1">Correcta</option>
+              <option value="1">Correcta</option> 
               <option value="0">Incorrecta</option>
             </select>
           </div>
