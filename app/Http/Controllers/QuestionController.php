@@ -46,9 +46,22 @@ class QuestionController extends Controller
       $questions->image   = $newFileName;
     }
     $questions->save();
-
+    $respuestas = $request->answers;
     //Guardando los datos para las respuestas...
-    $questions->answers()->createMany($request->answers);
+    foreach ($request->answers as $key => $value) {
+      $file = $value['image'];
+      $imagen = '';
+      if ($file != null or $value['image']) {
+        $fileNameWithTheExtension = $value['image']->getClientOriginalName();
+        $fileName = pathinfo($fileNameWithTheExtension, PATHINFO_FILENAME);
+        $extension = $value['image']->getClientOriginalExtension();
+        $newFileName = $fileName . '.' . $extension;
+        $path = $value['image']->storeAs('public/images', $newFileName);
+        $imagen   = $path;
+      }
+      $respuestas[$key]['image'] = $imagen;
+    }
+    $questions->answers()->createMany($respuestas);
 
     return redirect()->route('questions.index', $questions->questionnaire_id);
   }
@@ -59,7 +72,8 @@ class QuestionController extends Controller
     return view('question.edit', compact('questionnaires'));
   }
 
-  public function update(QuestionUpdateRequest $request, $questions){
+  public function update(QuestionUpdateRequest $request, $questions)
+  {
     $questions = Question::find($questions->id);
 
     $questions->questionnaire_id = $request->get('questionnaire_id');
@@ -86,7 +100,7 @@ class QuestionController extends Controller
 
 
 
-    /* $questions = new Question();
+  /* $questions = new Question();
     $questions->fill($request->only('image','description','iframe'));
     $questions->questionnaire_id = auth()->user()->id;
 
@@ -104,7 +118,7 @@ class QuestionController extends Controller
     } */
 
 
- /*
+  /*
 
   public function update(QuestionUpdateRequest $request, $id){
     $questions = Question::findOrFail($id);
