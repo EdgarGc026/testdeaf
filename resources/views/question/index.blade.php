@@ -30,7 +30,7 @@
             @foreach($questionnaires->questions as $questions)
               <tr>
                 <td>{{$questions->id}}</td>
-                <td>{{$questions->description}}</td>
+                <td><a href="{{ route('questions.show', [$questionnaires, $questions->id]) }}" >{{$questions->description}}</a></td>
                 <td>
                   <a href="{{ route('questions.edit', [$questionnaires, $questions->id]) }}"
                      class="btn btn-warning btn-sm" title="Editar preguntas"><i class="far fa-edit"></i>

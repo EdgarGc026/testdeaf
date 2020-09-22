@@ -23,6 +23,9 @@ Route::get('/questionnaires/{questionnaire}/questions/create', 'QuestionControll
 Route::post('/questionnaires/{questionnaire}/questions', 'QuestionController@store')
   ->name('questions.store');
 
+Route::get('/questionnaires/{questionnaire}/questions/{question}', 'QuestionController@show')
+  ->name('questions.show');
+
 Route::get('/questionnaires/{questionnaire}/questions/{question}/edit', 'QuestionController@edit')
   ->name('questions.edit');
 Route::put('/questionnaires/{questionnaire}/questions/{question}', 'QuestionController@update')

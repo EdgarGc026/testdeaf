@@ -76,6 +76,13 @@ class QuestionController extends Controller{
     return redirect()->route('questions.index', $questions->questionnaire_id);
   }
 
+  public function show($questionnaireId, $questionId){
+    $questionnaires = Questionnaire::findOrFail($questionnaireId);
+    $questions = Question::with('answers')->findOrFail($questionId);
+
+    return view('question.show', compact('questionnaires','questions'));
+  }
+
   public function confirmDelete($questionnaireId, $questionId){
     $questionnaires = Questionnaire::findOrFail($questionnaireId);
     $questions = Question::findOrFail($questionId);
@@ -90,10 +97,5 @@ class QuestionController extends Controller{
     $questions->delete();
     return redirect()->route('questions.index', $questions->questionnaire_id);
   }
-
-/*   public function show($id){
-    $questions = Question::find($id);
-    return view('question.show', ['questions'=> $questions]);
-  } */
 }
 
