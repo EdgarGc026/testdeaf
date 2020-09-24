@@ -53,6 +53,15 @@
               <label for="image">Imagen asociada</label>
               <input name="question[image]" type="file" accept="image/*" class="py-1">
             </div>
+
+            <div class="form-group">
+              <label for="category">A que categoria pertenece</label>
+              <select name="question[category_id]" class="form-control form-control-lg" id="category_id">
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+              </select>
+            </div>
             <hr /><br />
         </div>
       </div>

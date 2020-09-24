@@ -12,6 +12,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('questionnaires', 'QuestionnaireController');
+
 Route::get('questionnaires/{id}/confirmDelete', 'QuestionnaireController@confirmDelete')
   ->name('questionnaires.confirmDelete');
 
@@ -35,5 +36,8 @@ Route::get('/questionnaires/{questionnaire}/questions/{question}/confirmDelete',
   ->name('questions.confirmDelete');
 Route::delete('/questionnaires/{questionnaire}/questions/{question}','QuestionController@destroy')
   ->name('questions.destroy');
+
+Route::resource('categories', 'CategoryController');
+Route::get('categories/{category}/confirmDelete', 'CategoryController@confirmDelete')->name('categories.confirmDelete');
 
 Route::get('/takeExam', 'SurveyController@show')->name('survey.show');

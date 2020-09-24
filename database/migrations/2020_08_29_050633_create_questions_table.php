@@ -9,6 +9,7 @@ class CreateQuestionsTable extends Migration{
     Schema::create('questions', function (Blueprint $table) {
       $table->id();
       $table->unsignedBigInteger('questionnaire_id');
+      $table->unsignedBigInteger('category_id');
 
       $table->text('description');
       $table->text('iframe');

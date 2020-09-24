@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model{
   protected $fillable = [
-    'description', 'iframe', 'image',
+    'questionnaire_id' ,'category_id', 'description', 'iframe', 'image',
   ];
 
   protected $guarded = [];
@@ -27,6 +27,10 @@ class Question extends Model{
 
   public function answers(){
     return $this->hasMany(Answer::class);
+  }
+
+  public function category(){
+    return $this->belongsTo(Category::class);
   }
 
   public function responses(){

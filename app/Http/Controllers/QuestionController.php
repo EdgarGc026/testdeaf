@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Answer;
+use App\Category;
 use App\Question;
 use App\Questionnaire;
 use App\Http\Requests\QuestionStoreRequest;
 use App\Http\Requests\QuestionUpdateRequest;
-
 
 class QuestionController extends Controller{
   public function __construct(){
@@ -15,12 +15,15 @@ class QuestionController extends Controller{
 
   public function index($id){
     $questionnaires = Questionnaire::findOrFail($id);
+
     return view('question.index', compact('questionnaires'));
   }
 
   public function create($id){
     $questionnaires = Questionnaire::find($id);
-    return view('question.create', compact('questionnaires'));
+    $categories = Category::orderBy('id', 'ASC')->get();
+
+    return view('question.create', compact('questionnaires', 'categories'));
   }
 
   public function store(QuestionStoreRequest $request){
@@ -28,6 +31,7 @@ class QuestionController extends Controller{
     $questions->questionnaire_id = $request->input('questionnaire_id');
     $questions->description = $request->input('question.description');
     $questions->iframe = $request->input('question.iframe');
+    $questions->category_id = $request->input('question.category_id');
     if($request->hasFile('question.image')){
       $questions->image = $request->file('question.image')->store('questionImg', 'public');
     }
