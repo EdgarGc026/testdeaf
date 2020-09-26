@@ -11,16 +11,6 @@ class Question extends Model{
 
   protected $guarded = [];
 
-  /* public function getGetExcerptAttribute(){
-    return substr($this->description, 0, 10);
-  }
-  
-  public function getGetImageAttribute(){
-    if($this->image){
-      return url("public/questionImg/$this->image");
-    }
-  } */
-
   public function questionnaire(){
     return $this->belongsTo(Questionnaire::class);
   }
@@ -37,3 +27,12 @@ class Question extends Model{
     return $this->hasMany(SurveyResponse::class);
   }
 }
+ /* public function getGetExcerptAttribute(){
+    return substr($this->description, 0, 10);
+  }
+  
+  public function getGetImageAttribute(){
+    if($this->image){
+      return url("public/questionImg/$this->image");
+    }
+  } */

@@ -7,6 +7,7 @@ use App\Question;
 use App\Questionnaire;
 use App\Http\Requests\QuestionStoreRequest;
 use App\Http\Requests\QuestionUpdateRequest;
+use Illuminate\Support\Facades\Storage;
 
 class QuestionController extends Controller{
   public function __construct(){
@@ -97,6 +98,12 @@ class QuestionController extends Controller{
   public function destroy($questionnaireId, $questionId){
     $questionnaires = Questionnaire::findOrFail($questionnaireId);
     $questions = Question::findOrFail($questionId);
+
+  /*Metodos en fase beta 
+    Storage::disk('questionImg')->delete($questions->iframe);
+    
+    Storage::disk('answersImg)->delete();
+  */
 
     $questions->delete();
     return redirect()->route('questions.index', $questions->questionnaire_id);

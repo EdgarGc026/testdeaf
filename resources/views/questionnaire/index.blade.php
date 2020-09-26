@@ -33,7 +33,7 @@
             <tbody>
             @foreach($questionnaires as $questionnaire)
               <tr>
-                <td>{{$questionnaire->title}}</td>
+                <td><a href="{{ route('questionnaires.show', $questionnaire->id) }}">{{$questionnaire->title}}</a></td>
                 <td>{{$questionnaire->description}}</td>
                 <td>
                   <a href="{{ route('questions.index', $questionnaire->id) }}"
