@@ -33,9 +33,11 @@ class QuestionnaireController extends Controller{
   public function show(Questionnaire $questionnaires){
     
     $questionnaires = Questionnaire::with('questions.answers')->get();
-    /* dd($questionnaires); */
+    /* $questionnaires = Questionnaire::with('questions.answers')->get(); */
+  
     return view('questionnaire.show', compact('questionnaires'));
   }
+
 
   public function edit($id){
     $questionnaires = Questionnaire::findOrFail($id);
