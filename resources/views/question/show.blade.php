@@ -5,14 +5,16 @@
   <div class="row justify-content-center">
     <div class="col-md-12">
       <div class="card">
-        <div class="card-header"><a href="{{ route('questions.index', $questions->id) }}" class="btn btn-sm btn-secondary">Regresar</a></div>
+        <div class="card-header">
+          <a href="{{ route('questions.index', $questionnaires->id) }}" class="btn btn-sm btn-secondary">Regresar</a>
+        </div>
         <div class="card-body">
           <span class="text-muted">{{ $questions->id }}-.</span> {{ $questions->description }}
         </div>
       </div>
     </div>
   </div>
-  
+
   <div class="row justify-content-center">
     <div class="col-2"></div>
     <div class="col-8">
@@ -27,7 +29,7 @@
       </div>
     </div>
     <div class="col-2"></div>
-  </div>  
+  </div>
 
   <div class="row">
     <div class="col-6">
@@ -56,7 +58,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="col-6">
       <div class="card mt-3">
         <div class="card-body">
@@ -76,7 +78,7 @@
                 {!! $questions->answers[1]->iframe !!}
               </div>
             @endif
-           
+
             @if ($questions->answers[1]->image)
               <img src="" class="card-img-top" alt="imagen de la pregunta">
             @endif
@@ -113,7 +115,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="col-6">
       <div class="card mt-3">
         <div class="card-body">
@@ -128,7 +130,7 @@
               {{$questions->answers[3]->description}}
             </div>
           </div>
-          
+
           @if ($questions->answers[3]->iframe)
             <div class="embed-responsive embed-responsive-16by9 mt-3">
               {!! $questions->answers[3]->iframe !!}

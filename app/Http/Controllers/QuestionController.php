@@ -33,6 +33,7 @@ class QuestionController extends Controller{
     $questions->description = $request->input('question.description');
     $questions->iframe = $request->input('question.iframe');
     $questions->category_id = $request->input('question.category_id');
+
     if($request->hasFile('question.image')){
       $questions->image = $request->file('question.image')->store('questionImg', 'public');
     }
@@ -44,18 +45,18 @@ class QuestionController extends Controller{
       if($request->hasFile("answers.$i.image")){
         $answer['image'] = $request->file("answers.$i.image")->store('answersImg', 'public');
       }
-      
+
       $answer['question_id'] = $questions->id;
       Answer::create($answer);
     }
-    
+
     return redirect()->route('questions.index', $questions->questionnaire_id);
   }
 
   public function edit($questionnaireId, $questionId){
     $questionnaires = Questionnaire::findOrFail($questionnaireId);
     $question = Question::with('answers')->findOrFail($questionId);
-    
+
     return view('question.edit', compact('questionnaires', 'question'));
   }
 
@@ -99,9 +100,9 @@ class QuestionController extends Controller{
     $questionnaires = Questionnaire::findOrFail($questionnaireId);
     $questions = Question::findOrFail($questionId);
 
-  /*Metodos en fase beta 
+  /*Metodos en fase beta
     Storage::disk('questionImg')->delete($questions->iframe);
-    
+
     Storage::disk('answersImg)->delete();
   */
 

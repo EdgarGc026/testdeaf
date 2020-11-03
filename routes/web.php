@@ -40,4 +40,5 @@ Route::delete('/questionnaires/{questionnaire}/questions/{question}','QuestionCo
 Route::resource('categories', 'CategoryController');
 Route::get('categories/{category}/confirmDelete', 'CategoryController@confirmDelete')->name('categories.confirmDelete');
 
-Route::get('/takeExam', 'SurveyController@show')->name('survey.show');
+Route::get('/takeExam/', 'SurveyController@show')->name('survey.show');
+

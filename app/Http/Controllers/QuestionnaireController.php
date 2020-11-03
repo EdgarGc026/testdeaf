@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\QuestionnaireStoreRequest;
 use App\Http\Requests\QuestionnaireUpdateRequest;
+use App\Question;
 use App\Questionnaire;
 
 class QuestionnaireController extends Controller{
@@ -30,12 +31,11 @@ class QuestionnaireController extends Controller{
       ->with('status', 'Examen creado con exito');
   }
 
-  public function show(Questionnaire $questionnaires){
-    
-    $questionnaires = Questionnaire::with('questions.answers')->get();
+  public function show(Questionnaire $questionnaires, $id){
+    $questionnaires = Questionnaire::with('questions')->find($id);
     /* $questionnaires = Questionnaire::with('questions.answers')->get(); */
-  
-    return view('questionnaire.show', compact('questionnaires'));
+    return $questionnaires;
+    /*return view('questionnaire.show', compact('questionnaires'));*/
   }
 
 

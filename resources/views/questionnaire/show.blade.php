@@ -2,7 +2,8 @@
 @section('content')
 <div class="container">
   @foreach ($questionnaires as $questionnaire)
-    @foreach ($questionnaire->questions as $question)
+      {{$questionnaire->title}}
+   {{-- @foreach ($questionnaire->questions as $question)
       @if($question->id and $question->description)
         <div class="card pt-1">
           <div class="card-body text-justify">{{$question->id}}.- {{$question->description}}</div>
@@ -40,7 +41,7 @@
                           <div class="form-check form-check form-check-inline  ml-1">
                             <input class="form-check" id="OpcionD" name="Opcion" value="" type="radio">
                             <label class="form-check-label ml-1" for="Opcion">Respuestas</label>
-                          </div>  
+                          </div>
                         </div>
                         <div class="col-9">
                           {{$answer->description}}
@@ -51,14 +52,14 @@
                       @endif
                     </div>
                   </div>
-                </div>  
-              </div>  
+                </div>
+              </div>
             @endforeach
           </div>
         </div>
       </div>
-    @endforeach
+    @endforeach--}}
   @endforeach
-  
+
 </div>
 @endsection
