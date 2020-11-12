@@ -22,7 +22,7 @@
                 @if(auth()->user()->role == 'student')
                 <div class="col-4">
                   <a class="btn btn-dark btn-sm mr-1 "
-                     href="{{ route('survey.show') }}" title="Tomar el examen">Tomar el examen</a>
+                     href="{{ route('survey.index') }}" title="Tomar el examen">Tomar el examen</a>
                 </div>
                 @endif
                 <div class="col-4">

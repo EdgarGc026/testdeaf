@@ -12,11 +12,16 @@
 
         </div>
           <div class="card-body">
-            <h5 class="text-center">Tus examenes disponibles</h5>
+            <h5 class="text-center">Tus examenes disponibles, clic en el nombre para ir a el</h5>
             <ul class="list-group">
               @foreach($questionnaireNotApplies as $questionnaireNotApply)
                 <li class="list-group-item">
-                  <a href="#" title="Examen a contestar">{{ $questionnaireNotApply->title }}</a>
+                  {{ $questionnaireNotApply->title }}
+                  <a href="{{ route('survey.show', $questionnaireNotApply->id) }}"
+                     class="btn btn-outline-primary float-right"
+                     title="Examen a contestar"
+                  >Presentar examen</a>
+
                 </li>
               @endforeach
             </ul>

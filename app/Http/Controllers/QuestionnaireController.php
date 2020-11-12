@@ -31,11 +31,9 @@ class QuestionnaireController extends Controller{
       ->with('status', 'Examen creado con exito');
   }
 
-  public function show(Questionnaire $questionnaires, $id){
+  public function show($id){
     $questionnaires = Questionnaire::with('questions')->find($id);
-    /* $questionnaires = Questionnaire::with('questions.answers')->get(); */
-    return $questionnaires;
-    /*return view('questionnaire.show', compact('questionnaires'));*/
+    return view('questionnaire.show')->with('questionnaires', $questionnaires);
   }
 
 

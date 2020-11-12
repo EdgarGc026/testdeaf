@@ -32,13 +32,16 @@ Route::get('/questionnaires/{questionnaire}/questions/{question}/edit', 'Questio
 Route::put('/questionnaires/{questionnaire}/questions/{question}', 'QuestionController@update')
   ->name('questions.update');
 
-Route::get('/questionnaires/{questionnaire}/questions/{question}/confirmDelete', 'QuestionController@confirmDelete')
-  ->name('questions.confirmDelete');
+Route::get('/questionnaires/{questionnaire}/questions/{question}/confirmDelete',
+  'QuestionController@confirmDelete')->name('questions.confirmDelete');
 Route::delete('/questionnaires/{questionnaire}/questions/{question}','QuestionController@destroy')
   ->name('questions.destroy');
 
 Route::resource('categories', 'CategoryController');
-Route::get('categories/{category}/confirmDelete', 'CategoryController@confirmDelete')->name('categories.confirmDelete');
+Route::get('categories/{category}/confirmDelete', 'CategoryController@confirmDelete')
+  ->name('categories.confirmDelete');
 
-Route::get('/takeExam/', 'SurveyController@show')->name('survey.show');
+Route::get('/takeExam/', 'SurveyController@index')->name('survey.index');
 
+Route::get('/takeExam/questionnaires/{questionnaire}', 'SurveyController@show')
+  ->name('survey.show');

@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Questionnaire extends Model{
   protected $fillable =['title', 'description', 'user_id'];
-  
+
   protected $guarded = [];
-  
+
+
   public function user(){
     return $this->belongsTo(User::class);
   }
